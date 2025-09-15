@@ -108,16 +108,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Phone className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-300">(770) 695-3811</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri 9AM-6PM EST</p>
-                  </div>
-                </div>
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">

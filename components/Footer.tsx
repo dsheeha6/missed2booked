@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, Linkedin, Twitter } from 'lucide-react'
 import { getBrandName } from '@/lib/utils'
 import { COPY } from '@/constants/copy'
 
@@ -49,11 +49,22 @@ export function Footer() {
                 <Mail className="h-5 w-5" />
               </a>
               <a
-                href="tel:+1-770-695-3811"
+                href="https://www.linkedin.com/in/dannysheehan-/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Phone"
+                aria-label="LinkedIn"
               >
-                <Phone className="h-5 w-5" />
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://x.com/DannySh50977695"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <Twitter className="h-5 w-5" />
               </a>
             </div>
           </div>
