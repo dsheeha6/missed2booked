@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
+import { getErrorMessage } from '@/lib/form-utils'
 
 const onboardingSchema = z.object({
   selectedPlan: z.enum(['starter', 'pro', 'scale'], {
@@ -109,7 +110,7 @@ export function PlanSelectionStep({ form }: PlanSelectionStepProps) {
       </div>
 
       {errors.selectedPlan && (
-        <p className="text-center text-sm text-red-600">{errors.selectedPlan.message}</p>
+        <p className="text-center text-sm text-red-600">{getErrorMessage(errors.selectedPlan)}</p>
       )}
     </div>
   )

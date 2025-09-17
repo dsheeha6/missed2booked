@@ -1,6 +1,7 @@
 'use client'
 
 import { UseFormReturn } from 'react-hook-form'
+import { getErrorMessage } from '@/lib/form-utils'
 
 const PHONE_PROVIDERS = [
   'RingCentral', 'Verizon', 'AT&T', 'T-Mobile', 'Sprint', 'Vonage', 
@@ -40,7 +41,7 @@ export function PhoneSystemStep({ form }: PhoneSystemStepProps) {
             ))}
           </select>
           {errors.currentPhoneProvider && (
-            <p className="mt-1 text-sm text-red-600">{errors.currentPhoneProvider.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.currentPhoneProvider)}</p>
           )}
         </div>
 
@@ -59,7 +60,7 @@ export function PhoneSystemStep({ form }: PhoneSystemStepProps) {
             Format: +1 followed by 10-digit number
           </p>
           {errors.mainBusinessPhone && (
-            <p className="mt-1 text-sm text-red-600">{errors.mainBusinessPhone.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.mainBusinessPhone)}</p>
           )}
         </div>
       </div>
@@ -126,7 +127,7 @@ export function PhoneSystemStep({ form }: PhoneSystemStepProps) {
           </label>
         </div>
         {errors.phoneSetupOption && (
-          <p className="mt-2 text-sm text-red-600">{errors.phoneSetupOption.message}</p>
+          <p className="mt-2 text-sm text-red-600">{getErrorMessage(errors.phoneSetupOption)}</p>
         )}
       </div>
 

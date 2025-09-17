@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { useState } from 'react'
+import { getErrorMessage } from '@/lib/form-utils'
 
 interface MessagingComplianceStepProps {
   form: UseFormReturn<any>
@@ -52,7 +53,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
             maxLength={9}
           />
           {errors.ein && (
-            <p className="mt-1 text-sm text-red-600">{errors.ein.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.ein)}</p>
           )}
         </div>
 
@@ -73,7 +74,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
             <option value="Non-Profit">Non-Profit</option>
           </select>
           {errors.legalEntityType && (
-            <p className="mt-1 text-sm text-red-600">{errors.legalEntityType.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.legalEntityType)}</p>
           )}
         </div>
 
@@ -89,7 +90,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
             placeholder="https://smilebrightdental.com"
           />
           {errors.businessWebsite && (
-            <p className="mt-1 text-sm text-red-600">{errors.businessWebsite.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.businessWebsite)}</p>
           )}
         </div>
       </div>
@@ -129,7 +130,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
           + Add another message
         </button>
         {errors.sampleMessages && (
-          <p className="mt-1 text-sm text-red-600">{errors.sampleMessages.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.sampleMessages)}</p>
         )}
       </div>
 
@@ -157,7 +158,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
           ))}
         </div>
         {errors.optInMethod && (
-          <p className="mt-1 text-sm text-red-600">{errors.optInMethod.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.optInMethod)}</p>
         )}
       </div>
 
@@ -183,7 +184,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
             placeholder="https://smilebrightdental.com/privacy"
           />
           {errors.privacyPolicyUrl && (
-            <p className="mt-1 text-sm text-red-600">{errors.privacyPolicyUrl.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.privacyPolicyUrl)}</p>
           )}
         </div>
 
@@ -199,7 +200,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
             placeholder="https://smilebrightdental.com/terms"
           />
           {errors.termsOfServiceUrl && (
-            <p className="mt-1 text-sm text-red-600">{errors.termsOfServiceUrl.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.termsOfServiceUrl)}</p>
           )}
         </div>
       </div>

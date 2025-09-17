@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { useState } from 'react'
+import { getErrorMessage } from '@/lib/form-utils'
 
 interface IntegrationsStepProps {
   form: UseFormReturn<any>
@@ -74,7 +75,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
           Email address to receive conversation transcripts and alerts
         </p>
         {errors.inboxEmail && (
-          <p className="mt-1 text-sm text-red-600">{errors.inboxEmail.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.inboxEmail)}</p>
         )}
       </div>
 
@@ -117,7 +118,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
           ))}
         </div>
         {errors.calendarSystem && (
-          <p className="mt-1 text-sm text-red-600">{errors.calendarSystem.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.calendarSystem)}</p>
         )}
       </div>
 
@@ -157,7 +158,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
           + Add another email
         </button>
         {errors.analyticsEmails && (
-          <p className="mt-1 text-sm text-red-600">{errors.analyticsEmails.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.analyticsEmails)}</p>
         )}
       </div>
 

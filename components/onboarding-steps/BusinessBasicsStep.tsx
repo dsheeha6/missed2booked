@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
+import { getErrorMessage } from '@/lib/form-utils'
 
 const INDUSTRIES = [
   'Dental', 'HVAC', 'Salon', 'Restaurant', 'Retail', 'Healthcare', 
@@ -49,7 +50,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             placeholder="ABC Dental LLC"
           />
           {errors.businessLegalName && (
-            <p className="mt-1 text-sm text-red-600">{errors.businessLegalName.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.businessLegalName)}</p>
           )}
         </div>
 
@@ -64,7 +65,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             placeholder="Smile Bright Dental"
           />
           {errors.businessBrandName && (
-            <p className="mt-1 text-sm text-red-600">{errors.businessBrandName.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.businessBrandName)}</p>
           )}
         </div>
 
@@ -80,7 +81,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             placeholder="https://smilebrightdental.com"
           />
           {errors.websiteUrl && (
-            <p className="mt-1 text-sm text-red-600">{errors.websiteUrl.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.websiteUrl)}</p>
           )}
         </div>
 
@@ -96,7 +97,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             placeholder="https://g.page/smilebrightdental"
           />
           {errors.googleBusinessProfile && (
-            <p className="mt-1 text-sm text-red-600">{errors.googleBusinessProfile.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.googleBusinessProfile)}</p>
           )}
         </div>
 
@@ -112,7 +113,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             placeholder="123 Main Street, Suite 100, Atlanta, GA 30309"
           />
           {errors.businessAddress && (
-            <p className="mt-1 text-sm text-red-600">{errors.businessAddress.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.businessAddress)}</p>
           )}
         </div>
 
@@ -133,7 +134,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
             ))}
           </select>
           {errors.industry && (
-            <p className="mt-1 text-sm text-red-600">{errors.industry.message}</p>
+            <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.industry)}</p>
           )}
         </div>
       </div>
@@ -152,7 +153,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
               placeholder="John Smith"
             />
             {errors.primaryContactName && (
-              <p className="mt-1 text-sm text-red-600">{errors.primaryContactName.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.primaryContactName)}</p>
             )}
           </div>
 
@@ -166,7 +167,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
               placeholder="Office Manager"
             />
             {errors.primaryContactRole && (
-              <p className="mt-1 text-sm text-red-600">{errors.primaryContactRole.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.primaryContactRole)}</p>
             )}
           </div>
 
@@ -181,7 +182,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
               placeholder="john@smilebrightdental.com"
             />
             {errors.primaryContactEmail && (
-              <p className="mt-1 text-sm text-red-600">{errors.primaryContactEmail.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.primaryContactEmail)}</p>
             )}
           </div>
 
@@ -196,7 +197,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
               placeholder="(404) 555-0123"
             />
             {errors.primaryContactPhone && (
-              <p className="mt-1 text-sm text-red-600">{errors.primaryContactPhone.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.primaryContactPhone)}</p>
             )}
           </div>
         </div>

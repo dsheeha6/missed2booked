@@ -1,6 +1,7 @@
 'use client'
 
 import { UseFormReturn } from 'react-hook-form'
+import { getErrorMessage } from '@/lib/form-utils'
 
 interface ApprovalsStepProps {
   form: UseFormReturn<any>
@@ -53,7 +54,7 @@ export function ApprovalsStep({ form }: ApprovalsStepProps) {
           </div>
         </label>
         {errors.customerConsent && (
-          <p className="mt-2 text-sm text-red-600">{errors.customerConsent.message}</p>
+          <p className="mt-2 text-sm text-red-600">{getErrorMessage(errors.customerConsent)}</p>
         )}
       </div>
 
@@ -106,7 +107,7 @@ export function ApprovalsStep({ form }: ApprovalsStepProps) {
           </div>
         </label>
         {errors.acceptTerms && (
-          <p className="mt-2 text-sm text-red-600">{errors.acceptTerms.message}</p>
+          <p className="mt-2 text-sm text-red-600">{getErrorMessage(errors.acceptTerms)}</p>
         )}
       </div>
 

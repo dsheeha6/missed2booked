@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { useState } from 'react'
+import { getErrorMessage } from '@/lib/form-utils'
 
 const BRAND_VOICE_OPTIONS = [
   'Friendly', 'Professional', 'Witty', 'Casual', 'Formal', 'Warm', 
@@ -16,6 +17,7 @@ export function BrandingStep({ form }: BrandingStepProps) {
   const { register, formState: { errors }, watch, setValue } = form
   const [selectedBrandVoice, setSelectedBrandVoice] = useState<string[]>([])
   const [logoPreview, setLogoPreview] = useState<string | null>(null)
+
 
   const handleBrandVoiceChange = (voice: string) => {
     const updated = selectedBrandVoice.includes(voice)
@@ -58,7 +60,7 @@ export function BrandingStep({ form }: BrandingStepProps) {
           This is how your business name will appear in text messages
         </p>
         {errors.businessDisplayName && (
-          <p className="mt-1 text-sm text-red-600">{errors.businessDisplayName.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.businessDisplayName)}</p>
         )}
       </div>
 
@@ -159,7 +161,7 @@ export function BrandingStep({ form }: BrandingStepProps) {
           ))}
         </div>
         {errors.brandVoice && (
-          <p className="mt-1 text-sm text-red-600">{errors.brandVoice.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.brandVoice)}</p>
         )}
       </div>
 

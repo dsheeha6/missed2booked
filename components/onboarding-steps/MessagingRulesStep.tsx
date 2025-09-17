@@ -1,6 +1,7 @@
 'use client'
 
 import { UseFormReturn } from 'react-hook-form'
+import { getErrorMessage } from '@/lib/form-utils'
 
 const FOLLOW_UP_TIMING = [
   '5 minutes', '15 minutes', '30 minutes', '1 hour', '2 hours', '4 hours', '1 day'
@@ -70,7 +71,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
           Calendly, Acuity, Squarespace scheduling, or other booking platform
         </p>
         {errors.bookingLink && (
-          <p className="mt-1 text-sm text-red-600">{errors.bookingLink.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.bookingLink)}</p>
         )}
       </div>
 
@@ -88,7 +89,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.textHoursStart && (
-              <p className="mt-1 text-sm text-red-600">{errors.textHoursStart.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.textHoursStart)}</p>
             )}
           </div>
 
@@ -102,7 +103,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.textHoursEnd && (
-              <p className="mt-1 text-sm text-red-600">{errors.textHoursEnd.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.textHoursEnd)}</p>
             )}
           </div>
         </div>
@@ -123,7 +124,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
           placeholder="Thanks for reaching out! We're currently closed but will respond during business hours (9am-5pm). For urgent matters, please call us at (404) 555-0123."
         />
         {errors.afterHoursMessage && (
-          <p className="mt-1 text-sm text-red-600">{errors.afterHoursMessage.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.afterHoursMessage)}</p>
         )}
       </div>
 
@@ -143,7 +144,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.followUpCount && (
-              <p className="mt-1 text-sm text-red-600">{errors.followUpCount.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.followUpCount)}</p>
             )}
           </div>
 
@@ -162,7 +163,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
               ))}
             </select>
             {errors.followUpTiming && (
-              <p className="mt-1 text-sm text-red-600">{errors.followUpTiming.message}</p>
+              <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.followUpTiming)}</p>
             )}
           </div>
         </div>
@@ -180,7 +181,7 @@ export function MessagingRulesStep({ form }: MessagingRulesStepProps) {
           placeholder="When should a human be notified? (e.g., after 3 failed attempts, when customer says 'speak to manager', specific keywords, etc.)"
         />
         {errors.escalationTrigger && (
-          <p className="mt-1 text-sm text-red-600">{errors.escalationTrigger.message}</p>
+          <p className="mt-1 text-sm text-red-600">{getErrorMessage(errors.escalationTrigger)}</p>
         )}
       </div>
     </div>
