@@ -66,8 +66,8 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Send SMS based on configured mode
-    const sendMode = process.env.DEMO_SEND_MODE || 'twilio'
+    // Send SMS based on configured mode - default to make webhook
+    const sendMode = process.env.DEMO_SEND_MODE || 'make'
     
     let result
     if (sendMode === 'make') {

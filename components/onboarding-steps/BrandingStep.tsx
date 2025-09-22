@@ -2,6 +2,7 @@
 
 import { UseFormReturn } from 'react-hook-form'
 import { useState } from 'react'
+import Image from 'next/image'
 import { getErrorMessage } from '@/lib/form-utils'
 
 const BRAND_VOICE_OPTIONS = [
@@ -73,9 +74,11 @@ export function BrandingStep({ form }: BrandingStepProps) {
           <div className="space-y-1 text-center">
             {logoPreview ? (
               <div className="space-y-2">
-                <img
+                <Image
                   src={logoPreview}
                   alt="Logo preview"
+                  width={80}
+                  height={80}
                   className="mx-auto h-20 w-20 object-contain"
                 />
                 <p className="text-sm text-gray-600">Logo uploaded successfully</p>

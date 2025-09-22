@@ -60,35 +60,16 @@ Reply STOP to opt out.`
 }
 
 export async function sendMakeWebhook(to: string): Promise<{ success: boolean; message?: string }> {
-  const webhookUrl = process.env.MAKE_WEBHOOK_URL
+  const webhookUrl = process.env.MAKE_WEBHOOK_URL || 'https://hook.us2.make.com/u19m7fkq499gyaqlip9ijbsw8rb841fv'
   
-  if (!webhookUrl) {
-    return {
-      success: false,
-      message: 'Webhook URL not configured'
-    }
-  }
-
   try {
-    const brandName = getBrandName()
-    const sampleBookingLink = generateSampleBookingLink()
-    
-    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
-
-Want us to call now or book a time? ${sampleBookingLink}
-
-Reply STOP to opt out.`
-
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        to,
-        message,
-        brand: brandName,
-        bookingLink: sampleBookingLink,
+        phone: to,
       }),
     })
 
@@ -96,7 +77,7 @@ Reply STOP to opt out.`
       throw new Error(`Webhook failed: ${response.status}`)
     }
 
-    console.log('Make webhook sent successfully')
+    console.log('Make webhook sent successfully to:', to)
     
     return {
       success: true,
