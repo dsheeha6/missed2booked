@@ -162,7 +162,21 @@ export function PricingTable() {
                     variant={tier.popular ? 'default' : 'outline'}
                     asChild
                   >
-                    <a href={`/pricing?plan=${tier.id}&billing=${isAnnual ? 'annual' : 'monthly'}`}>
+                    <a href={
+                      tier.id === 'scale' && isAnnual 
+                        ? 'https://buy.stripe.com/8x228s5LobQ27ch77L4ko05'
+                        : tier.id === 'scale' && !isAnnual
+                        ? 'https://buy.stripe.com/4gMeVeehU9HUbsxbo14ko04'
+                        : tier.id === 'pro' && isAnnual
+                        ? 'https://buy.stripe.com/6oUcN6c9Mg6i8gleAd4ko03'
+                        : tier.id === 'pro' && !isAnnual
+                        ? 'https://buy.stripe.com/3cIeVe1v8aLY9kp63H4ko02'
+                        : tier.id === 'starter' && isAnnual
+                        ? 'https://buy.stripe.com/fZu7sM2zc9HU0NTgIl4ko01'
+                        : tier.id === 'starter' && !isAnnual
+                        ? 'https://buy.stripe.com/28E28sc9Mg6i7ch77L4ko00'
+                        : `/pricing?plan=${tier.id}&billing=${isAnnual ? 'annual' : 'monthly'}`
+                    }>
                       {tier.cta}
                     </a>
                   </Button>
