@@ -107,12 +107,14 @@ export function FAQ() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link
-                  href="/contact"
+                <a
+                  href="https://calendly.com/daniel-sheehan03/missed2booked-com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-secondary inline-flex items-center justify-center px-8 py-3 text-lg"
                 >
                   Book a Call
-                </Link>
+                </a>
               </motion.div>
             </div>
           </div>

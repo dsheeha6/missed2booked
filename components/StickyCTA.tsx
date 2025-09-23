@@ -68,10 +68,10 @@ export function StickyCTA() {
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild className="flex-1">
-                <Link href="/contact">
+                <a href="https://calendly.com/daniel-sheehan03/missed2booked-com" target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-4 w-4 mr-1" />
                   Book Call
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
@@ -101,10 +101,10 @@ export function StickyCTA() {
               </Link>
             </Button>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="/contact">
+              <a href="https://calendly.com/daniel-sheehan03/missed2booked-com" target="_blank" rel="noopener noreferrer">
                 <Calendar className="h-4 w-4 mr-2" />
                 Book Call
-              </Link>
+              </a>
             </Button>
             <button
               onClick={handleDismiss}

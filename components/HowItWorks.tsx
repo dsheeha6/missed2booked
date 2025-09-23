@@ -117,12 +117,14 @@ export function HowItWorks() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                href="/demo"
-                className="btn-secondary inline-flex items-center justify-center px-8 py-3 text-lg"
+              <a
+                href="https://calendly.com/daniel-sheehan03/missed2booked-com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary inline-flex items-center justify-center px-8 py-3 text-lg border-2 border-blue-600 hover:border-blue-700"
               >
-                See Live Demo
-              </Link>
+                Book Call
+              </a>
             </motion.div>
           </div>
         </motion.div>

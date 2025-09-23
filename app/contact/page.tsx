@@ -85,6 +85,23 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-16">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              See it in action — book your 15-min demo
+            </h2>
+            <Button 
+              onClick={() => window.open('https://calendly.com/daniel-sheehan03/missed2booked-com', '_blank')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-4"
+            >
+              Book a Call
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Info & Form Section */}
       <section className="py-16">
         <div className="container-custom">
