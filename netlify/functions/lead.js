@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { email, phone, name, company, source } = JSON.parse(event.body)
+    const { email, phone, name, company, message, source } = JSON.parse(event.body)
 
     // Basic validation
     if (!email && !phone) {
@@ -39,19 +39,41 @@ exports.handler = async (event, context) => {
       }
     }
 
-    // TODO: In production, save to database or CRM
-    console.log('Lead captured:', {
+    // Prepare data for webhook
+    const leadData = {
       email,
-      phone,
-      name,
-      company,
-      source,
+      phone: phone || '',
+      name: name || '',
+      company: company || '',
+      message: message || '',
+      source: source || 'contact',
       timestamp: new Date().toISOString(),
-    })
+      url: event.headers.referer || 'Unknown',
+      userAgent: event.headers['user-agent'] || 'Unknown'
+    }
 
-    // TODO: Send welcome email or SMS
-    // TODO: Add to email marketing list
-    // TODO: Notify sales team
+    // Send to Make.com webhook
+    try {
+      const webhookResponse = await fetch('https://hook.us2.make.com/s1jml5dm4u2lddydloagzbfs6fouyepw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData),
+      })
+
+      if (!webhookResponse.ok) {
+        console.error('Webhook failed:', webhookResponse.status, webhookResponse.statusText)
+      } else {
+        console.log('Lead sent to webhook successfully')
+      }
+    } catch (webhookError) {
+      console.error('Webhook error:', webhookError)
+      // Don't fail the entire request if webhook fails
+    }
+
+    // Log for debugging
+    console.log('Lead captured:', leadData)
 
     return {
       statusCode: 200,
