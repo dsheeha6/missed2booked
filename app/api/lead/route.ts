@@ -38,11 +38,13 @@ export async function POST(request: NextRequest) {
 
       if (!webhookResponse.ok) {
         console.error('Webhook failed:', webhookResponse.status, webhookResponse.statusText)
+        console.log('Webhook URL may be inactive or disabled')
       } else {
         console.log('Lead sent to webhook successfully')
       }
     } catch (webhookError) {
       console.error('Webhook error:', webhookError)
+      console.log('Continuing without webhook - lead still captured locally')
       // Don't fail the entire request if webhook fails
     }
 
