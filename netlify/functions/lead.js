@@ -39,17 +39,24 @@ exports.handler = async (event, context) => {
       }
     }
 
-    // Prepare data for webhook
+    // Get IP address from request
+    const ip = event.headers['client-ip'] || 
+               event.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
+               event.headers['x-real-ip'] ||
+               event.headers['x-client-ip'] ||
+               'Unknown'
+
+    // Prepare data for webhook - matching spreadsheet format
     const leadData = {
+      timestamp: new Date().toISOString(),
+      name: name || '',
       email,
       phone: phone || '',
-      name: name || '',
       company: company || '',
       message: message || '',
       source: source || 'contact',
-      timestamp: new Date().toISOString(),
-      url: event.headers.referer || 'Unknown',
-      userAgent: event.headers['user-agent'] || 'Unknown'
+      user_agent: event.headers['user-agent'] || 'Unknown',
+      ip: ip
     }
 
     // Send to Make.com webhook

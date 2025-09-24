@@ -13,17 +13,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Prepare data for webhook
+    // Get IP address from request
+    const ip = request.ip || 
+               request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+               request.headers.get('x-real-ip') ||
+               'Unknown'
+
+    // Prepare data for webhook - matching spreadsheet format
     const leadData = {
+      timestamp: new Date().toISOString(),
+      name: name || '',
       email,
       phone: phone || '',
-      name: name || '',
       company: company || '',
       message: message || '',
       source: source || 'contact',
-      timestamp: new Date().toISOString(),
-      url: request.headers.get('referer') || 'Unknown',
-      userAgent: request.headers.get('user-agent') || 'Unknown'
+      user_agent: request.headers.get('user-agent') || 'Unknown',
+      ip: ip
     }
 
     // Send to Make.com webhook

@@ -25,18 +25,30 @@ export default function ContactPage() {
     }
 
     try {
-      const response = await fetch('/api/lead', {
+      // Prepare data for webhook - matching spreadsheet format
+      const leadData = {
+        timestamp: new Date().toISOString(),
+        name: data.name || '',
+        email: data.email,
+        phone: data.phone || '',
+        company: data.company || '',
+        message: data.message || '',
+        source: data.source || 'contact',
+        user_agent: navigator.userAgent || 'Unknown',
+        ip: 'Unknown' // IP cannot be captured from frontend for security reasons
+      }
+
+      // Send directly to Make.com webhook
+      const response = await fetch('https://hook.us2.make.com/s1jml5dm4u2lddydloagzbfs6fouyepw', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(leadData),
       })
 
-      const result = await response.json()
-
       if (!response.ok) {
-        throw new Error(result.message || 'Failed to send message')
+        throw new Error('Failed to send message')
       }
 
       setIsSubmitted(true)
