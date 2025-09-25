@@ -6,38 +6,39 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:functions\"",
+    "dev:functions": "netlify functions:serve --port 9999"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-slot": "^1.0.2",
-    "@tailwindcss/typography": "^0.5.10",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^12.23.22",
+    "lucide-react": "^0.294.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.48.2",
+    "sonner": "^1.2.4",
+    "stripe": "^18.5.0",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7",
+    "twilio": "^5.10.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "framer-motion": "^10.16.16",
-    "lucide-react": "^0.294.0",
-    "next": "14.0.4",
-    "postcss": "^8",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-hook-form": "^7.48.2",
-    "react-phone-number-input": "^3.3.7",
-    "sonner": "^1.2.4",
-    "stripe": "^14.7.0",
-    "tailwind-merge": "^2.0.0",
-    "tailwindcss": "^3.3.0",
-    "twilio": "^4.19.0",
-    "typescript": "^5",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@types/twilio": "^0.0.5",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "sharp": "^0.34.3"
+    "netlify-cli": "^17.10.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }

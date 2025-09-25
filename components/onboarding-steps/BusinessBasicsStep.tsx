@@ -88,7 +88,7 @@ export function BusinessBasicsStep({ form }: BusinessBasicsStepProps) {
         {/* Google Business Profile */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Google Business Profile Link *
+            Google Business Profile Link
           </label>
           <input
             {...register('googleBusinessProfile')}

@@ -125,8 +125,13 @@ export function PlanSelectionStep({ form }: PlanSelectionStepProps) {
                 ? 'border-blue-500 bg-blue-50 shadow-lg'
                 : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
             }`}
+            onClick={() => {
+              console.log('Plan clicked:', plan.id)
+              form.setValue('selectedPlan', plan.id as 'starter' | 'pro' | 'scale')
+              form.trigger('selectedPlan')
+              console.log('Form value set to:', form.getValues('selectedPlan'))
+            }}
           >
-            
             <label className="block cursor-pointer">
               <input
                 {...register('selectedPlan')}

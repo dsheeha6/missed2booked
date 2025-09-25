@@ -63,7 +63,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
       {/* Inbox Email */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Inbox for Transcripts/Alerts *
+          Inbox for Transcripts/Alerts (Optional)
         </label>
         <input
           {...register('inboxEmail')}
@@ -97,7 +97,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
       {/* Calendar System */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Calendar System *
+          Calendar System (Optional)
         </label>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
@@ -125,7 +125,7 @@ export function IntegrationsStep({ form }: IntegrationsStepProps) {
       {/* Analytics Emails */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Analytics Email Addresses *
+          Analytics Email Addresses (Optional)
         </label>
         <p className="text-sm text-gray-500 mb-4">
           Who should receive weekly performance reports?

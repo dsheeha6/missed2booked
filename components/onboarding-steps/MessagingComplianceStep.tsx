@@ -36,7 +36,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">📝 Messaging Compliance (A2P 10DLC)</h3>
         <p className="text-gray-600">
-          Required for U.S. businesses. This information is needed to register your brand with carriers.
+          Optional for U.S. businesses. This information helps register your brand with carriers for better deliverability.
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
         {/* EIN */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            EIN (9 digits) *
+            EIN (9 digits)
           </label>
           <input
             {...register('ein')}
@@ -60,7 +60,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
         {/* Legal Entity Type */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Legal Entity Type *
+            Legal Entity Type
           </label>
           <select
             {...register('legalEntityType')}
@@ -81,7 +81,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
         {/* Business Website */}
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Business Website (must be public) *
+            Business Website (must be public)
           </label>
           <input
             {...register('businessWebsite')}
@@ -98,7 +98,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
       {/* Sample Messages */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Sample Outbound Messages (2-3 short texts) *
+          Sample Outbound Messages (2-3 short texts)
         </label>
         <p className="text-sm text-gray-500 mb-4">
           Provide examples of messages you'd actually send to customers
@@ -137,7 +137,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
       {/* Opt-in Method */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Opt-in Method *
+          Opt-in Method
         </label>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
@@ -175,7 +175,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
         {/* Privacy Policy URL */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Privacy Policy URL *
+            Privacy Policy URL
           </label>
           <input
             {...register('privacyPolicyUrl')}
@@ -191,7 +191,7 @@ export function MessagingComplianceStep({ form }: MessagingComplianceStepProps) 
         {/* Terms of Service URL */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Terms of Service URL *
+            Terms of Service URL
           </label>
           <input
             {...register('termsOfServiceUrl')}
