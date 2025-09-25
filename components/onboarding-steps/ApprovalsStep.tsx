@@ -111,33 +111,40 @@ export function ApprovalsStep({ form }: ApprovalsStepProps) {
         )}
       </div>
 
-      {/* Compliance Notice */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-        <h4 className="text-lg font-semibold text-green-900 mb-4">What Happens Next?</h4>
-        <div className="text-sm text-green-800 space-y-2">
-          <p>Once you complete this form, we will:</p>
+      {/* What Happens Next */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h4 className="text-lg font-semibold text-blue-900 mb-4">🚀 What Happens Next?</h4>
+        <div className="text-sm text-blue-800 space-y-3">
+          <p>
+            Once you complete this form, the next step is your 30-minute onboarding call.
+            If you haven't booked that yet, please do so using the button below:
+          </p>
+          <div className="text-center">
+            <a
+              href="https://calendly.com/daniel-sheehan03/missed2booked-onboarding"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            >
+              👉 Book Your Onboarding Call
+            </a>
+          </div>
+          <p className="mt-4">
+            During and after your onboarding call, we will:
+          </p>
           <ul className="ml-4 space-y-1">
-            <li>• Register your brand with carriers for A2P 10DLC compliance</li>
-            <li>• Set up your Twilio sub-account and phone number</li>
-            <li>• Configure your automated messaging flows</li>
-            <li>• Apply your branding and preferences</li>
-            <li>• Send you setup confirmation and next steps</li>
+            <li>• Set up your phone number and connect it to our messaging system</li>
+            <li>• Configure your automated missed-call text flows</li>
+            <li>• Apply your business name and preferences to the messages</li>
+            <li>• Handle carrier compliance (Toll-Free Verification or 10DLC, if needed)</li>
+            <li>• Connect any requested integrations</li>
           </ul>
-          <p className="mt-3 font-medium">
-            This process typically takes 1-2 business days to complete.
+          <p className="mt-4 font-medium">
+            We're excited to get you live and start turning missed calls into bookings! 🎉
           </p>
         </div>
       </div>
 
-      {/* Contact Information */}
-      <div className="text-center text-sm text-gray-600">
-        <p>
-          Questions about compliance or setup? Contact us at{' '}
-          <a href="mailto:support@missed2booked.com" className="text-blue-600 hover:text-blue-700">
-            support@missed2booked.com
-          </a>
-        </p>
-      </div>
     </div>
   )
 }

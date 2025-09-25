@@ -72,6 +72,50 @@ export function PlanSelectionStep({ form }: PlanSelectionStepProps) {
         <p className="text-gray-600">Which plan did you choose? This helps us customize your setup.</p>
       </div>
 
+      {/* Next Steps */}
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h4 className="text-lg font-semibold text-gray-900 mb-4">🚀 Next Steps</h4>
+        <div className="space-y-4 text-sm text-gray-700">
+          <div className="flex items-start space-x-3">
+            <span className="text-blue-600 font-bold">1.</span>
+            <div>
+              <p className="font-medium">Book your onboarding call (30 mins)</p>
+              <p className="text-gray-600 mb-3">Use the button below to pick a time that's most convenient for you.</p>
+              <a 
+                href="https://calendly.com/daniel-sheehan03/missed2booked-onboarding" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+              >
+                📅 Onboarding Call
+              </a>
+            </div>
+          </div>
+          
+          <div className="flex items-start space-x-3">
+            <span className="text-blue-600 font-bold">2.</span>
+            <div>
+              <p className="font-medium">Fill out the questionnaire</p>
+              <p className="text-gray-600">Complete the form below to the best of your ability. If you don't know an answer — no worries! Just leave it blank and we'll go over it together during the onboarding call.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start space-x-3">
+            <span className="text-blue-600 font-bold">3.</span>
+            <div>
+              <p className="font-medium">After the call</p>
+              <p className="text-gray-600">I'll handle setting everything up on our end so you're ready to go.</p>
+            </div>
+          </div>
+          
+          <div className="mt-4 p-3 bg-white rounded-lg border border-blue-100">
+            <p className="text-gray-800 font-medium">
+              Excited to be working with you and getting your system live! 🎉
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {PLANS.map((plan) => (
           <div

@@ -10,9 +10,7 @@ import { PlanSelectionStep } from './onboarding-steps/PlanSelectionStep'
 import { BusinessBasicsStep } from './onboarding-steps/BusinessBasicsStep'
 import { PhoneSystemStep } from './onboarding-steps/PhoneSystemStep'
 import { MessagingComplianceStep } from './onboarding-steps/MessagingComplianceStep'
-import { MessagingRulesStep } from './onboarding-steps/MessagingRulesStep'
 import { IntegrationsStep } from './onboarding-steps/IntegrationsStep'
-import { BrandingStep } from './onboarding-steps/BrandingStep'
 import { ApprovalsStep } from './onboarding-steps/ApprovalsStep'
 import { OptionalStep } from './onboarding-steps/OptionalStep'
 
@@ -51,28 +49,12 @@ const onboardingSchema = z.object({
   privacyPolicyUrl: z.string().url('Please enter a valid privacy policy URL'),
   termsOfServiceUrl: z.string().url('Please enter a valid terms of service URL'),
 
-  // Messaging Rules & Preferences
-  enableTwoWayTexting: z.boolean(),
-  enableVoiceCallback: z.boolean(),
-  bookingLink: z.string().url('Please enter a valid booking link'),
-  textHoursStart: z.string().min(1, 'Please select start time'),
-  textHoursEnd: z.string().min(1, 'Please select end time'),
-  afterHoursMessage: z.string().min(1, 'After hours message is required'),
-  followUpCount: z.number().min(0).max(10),
-  followUpTiming: z.string().min(1, 'Please select follow-up timing'),
-  escalationTrigger: z.string().min(1, 'Please specify escalation trigger'),
-
   // Integrations
   crm: z.string().optional(),
   inboxEmail: z.string().email('Please enter a valid email'),
   slackChannel: z.string().optional(),
   calendarSystem: z.enum(['Google', 'Outlook', 'Other', 'None']),
   analyticsEmails: z.array(z.string().email()).min(1, 'Please enter at least one analytics email'),
-
-  // Branding
-  businessDisplayName: z.string().min(1, 'Business display name is required'),
-  logoFile: z.any().optional(),
-  brandVoice: z.array(z.string()).min(1, 'Please select at least one brand voice adjective'),
 
   // Approvals & Legal
   customerConsent: z.boolean().refine(val => val === true, 'You must confirm customer consent'),
@@ -107,17 +89,12 @@ const FOLLOW_UP_TIMING = [
 
 export function OnboardingForm() {
   const [currentStep, setCurrentStep] = useState(1)
-  const totalSteps = 9
+  const totalSteps = 7
 
   const form = useForm<OnboardingFormData>({
     resolver: zodResolver(onboardingSchema),
     defaultValues: {
-      enableTwoWayTexting: true,
-      enableVoiceCallback: true,
-      followUpCount: 3,
-      followUpTiming: '30 minutes',
       calendarSystem: 'Google',
-      brandVoice: [],
       analyticsEmails: [],
       sampleMessages: ['', ''],
       customerConsent: false,
@@ -173,14 +150,10 @@ export function OnboardingForm() {
       case 4:
         return <MessagingComplianceStep form={form} />
       case 5:
-        return <MessagingRulesStep form={form} />
-      case 6:
         return <IntegrationsStep form={form} />
-      case 7:
-        return <BrandingStep form={form} />
-      case 8:
+      case 6:
         return <ApprovalsStep form={form} />
-      case 9:
+      case 7:
         return <OptionalStep form={form} />
       default:
         return null

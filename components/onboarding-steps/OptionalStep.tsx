@@ -101,41 +101,7 @@ export function OptionalStep({ form }: OptionalStepProps) {
         </p>
       </div>
 
-      {/* Success Preview */}
-      <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6">
-        <h4 className="text-lg font-semibold text-gray-900 mb-4">🎉 You're Almost Done!</h4>
-        <div className="text-sm text-gray-700 space-y-2">
-          <p>
-            Once you complete this form, we'll have everything we need to:
-          </p>
-          <ul className="ml-4 space-y-1">
-            <li>• Set up your automated messaging system</li>
-            <li>• Configure your phone number and call flows</li>
-            <li>• Register your brand for compliance</li>
-            <li>• Apply your branding and preferences</li>
-            <li>• Connect your integrations</li>
-            <li>• Start converting missed calls into bookings!</li>
-          </ul>
-          <p className="mt-3 font-medium text-green-800">
-            We'll send you a confirmation email with next steps within 24 hours.
-          </p>
-        </div>
-      </div>
 
-      {/* Support Information */}
-      <div className="text-center">
-        <div className="bg-gray-50 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 mb-2">Need Help?</h4>
-          <p className="text-sm text-gray-600 mb-3">
-            Our team is here to help you get the most out of your setup.
-          </p>
-          <div className="space-y-1 text-sm text-gray-600">
-            <p>📧 Email: <a href="mailto:support@missed2booked.com" className="text-blue-600 hover:text-blue-700">support@missed2booked.com</a></p>
-            <p>📞 Phone: <a href="tel:+14045550123" className="text-blue-600 hover:text-blue-700">(404) 555-0123</a></p>
-            <p>💬 Live Chat: Available on our website</p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
