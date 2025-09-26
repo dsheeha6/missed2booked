@@ -126,3 +126,52 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Optimize blur effects for mobile */
+  .blur-3xl {
+    filter: blur(24px);
+  }
+  
+  .blur-2xl {
+    filter: blur(16px);
+  }
+  
+  .blur-xl {
+    filter: blur(12px);
+  }
+  
+  .blur-lg {
+    filter: blur(8px);
+  }
+  
+  /* Reduce opacity for better performance */
+  .opacity-20 {
+    opacity: 0.15;
+  }
+  
+  .opacity-15 {
+    opacity: 0.1;
+  }
+  
+  .opacity-10 {
+    opacity: 0.08;
+  }
+  
+  .opacity-8 {
+    opacity: 0.06;
+  }
+  
+  .opacity-6 {
+    opacity: 0.05;
+  }
+}
+
+/* Hardware acceleration for animated elements */
+.animate-element {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

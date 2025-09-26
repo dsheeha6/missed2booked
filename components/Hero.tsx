@@ -1,12 +1,14 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { COPY } from '@/constants/copy'
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <section className="relative overflow-hidden min-h-screen flex items-center">
       {/* Enhanced background gradient */}
@@ -15,132 +17,184 @@ export function Hero() {
       {/* Additional gradient layers for depth */}
       <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/30 via-transparent to-blue-50/30 dark:from-purple-900/20 dark:via-transparent dark:to-blue-900/20" />
       
-      {/* Enhanced animated background elements */}
+      {/* Optimized animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Primary floating orbs with bubble screen saver movement */}
-        <motion.div 
-          className="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-20 blur-3xl"
-          style={{ left: '20%', top: '10%' }}
-          animate={{
-            x: [0, 100, -50, 80, 0],
-            y: [0, -80, 120, -40, 0],
-            scale: [1, 1.2, 0.8, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 blur-3xl"
-          style={{ left: '60%', top: '70%' }}
-          animate={{
-            x: [0, -120, 60, -80, 0],
-            y: [0, 100, -60, 80, 0],
-            scale: [1, 0.9, 1.3, 0.7, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        
-        {/* Corner floating elements with bubble movement */}
-        <motion.div 
-          className="absolute w-64 h-64 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-15 blur-2xl"
-          style={{ left: '10%', top: '20%' }}
-          animate={{
-            x: [0, 200, -100, 150, 0],
-            y: [0, -150, 200, -100, 0],
-            scale: [1, 1.1, 0.9, 1.2, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5
-          }}
-        />
-        <motion.div 
-          className="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-15 blur-2xl"
-          style={{ left: '70%', top: '15%' }}
-          animate={{
-            x: [0, -180, 120, -200, 0],
-            y: [0, 180, -120, 160, 0],
-            scale: [1, 0.8, 1.3, 0.9, 1],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        <motion.div 
-          className="absolute w-48 h-48 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-10 blur-xl"
-          style={{ left: '15%', top: '75%' }}
-          animate={{
-            x: [0, 150, -80, 120, 0],
-            y: [0, -120, 180, -90, 0],
-            scale: [1, 1.4, 0.6, 1.1, 1],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-        />
-        <motion.div 
-          className="absolute w-72 h-72 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-12 blur-xl"
-          style={{ left: '75%', top: '60%' }}
-          animate={{
-            x: [0, -160, 90, -140, 0],
-            y: [0, 160, -90, 140, 0],
-            scale: [1, 0.7, 1.4, 0.8, 1],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3
-          }}
-        />
-        
-        {/* Additional smaller bubbles for more dynamic movement */}
-        <motion.div 
-          className="absolute w-32 h-32 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-8 blur-lg"
-          style={{ left: '25%', top: '40%' }}
-          animate={{
-            x: [0, 300, -200, 250, 0],
-            y: [0, -200, 300, -150, 0],
-            scale: [1, 1.5, 0.5, 1.2, 1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4
-          }}
-        />
-        <motion.div 
-          className="absolute w-40 h-40 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full opacity-6 blur-lg"
-          style={{ left: '80%', top: '45%' }}
-          animate={{
-            x: [0, -250, 180, -300, 0],
-            y: [0, 250, -180, 200, 0],
-            scale: [1, 0.5, 1.6, 0.7, 1],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5
-          }}
-        />
+        {/* Desktop: Full animation set */}
+        <div className="hidden md:block">
+          {/* Primary floating orbs with optimized movement */}
+          <motion.div 
+            className="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-20 blur-3xl"
+            style={{ left: '20%', top: '10%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 100, -50, 80, 0],
+              y: [0, -80, 120, -40, 0],
+              scale: [1, 1.2, 0.8, 1.1, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 blur-3xl"
+            style={{ left: '60%', top: '70%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, -120, 60, -80, 0],
+              y: [0, 100, -60, 80, 0],
+              scale: [1, 0.9, 1.3, 0.7, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          
+          {/* Corner floating elements */}
+          <motion.div 
+            className="absolute w-64 h-64 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-15 blur-2xl"
+            style={{ left: '10%', top: '20%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 200, -100, 150, 0],
+              y: [0, -150, 200, -100, 0],
+              scale: [1, 1.1, 0.9, 1.2, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+          />
+          <motion.div 
+            className="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-15 blur-2xl"
+            style={{ left: '70%', top: '15%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, -180, 120, -200, 0],
+              y: [0, 180, -120, 160, 0],
+              scale: [1, 0.8, 1.3, 0.9, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 22,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div 
+            className="absolute w-48 h-48 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-10 blur-xl"
+            style={{ left: '15%', top: '75%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 150, -80, 120, 0],
+              y: [0, -120, 180, -90, 0],
+              scale: [1, 1.4, 0.6, 1.1, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 16,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.5
+            }}
+          />
+          <motion.div 
+            className="absolute w-72 h-72 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-12 blur-xl"
+            style={{ left: '75%', top: '60%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, -160, 90, -140, 0],
+              y: [0, 160, -90, 140, 0],
+              scale: [1, 0.7, 1.4, 0.8, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 24,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+          
+          {/* Additional smaller bubbles */}
+          <motion.div 
+            className="absolute w-32 h-32 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-8 blur-lg"
+            style={{ left: '25%', top: '40%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 300, -200, 250, 0],
+              y: [0, -200, 300, -150, 0],
+              scale: [1, 1.5, 0.5, 1.2, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 30,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+          <motion.div 
+            className="absolute w-40 h-40 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full opacity-6 blur-lg"
+            style={{ left: '80%', top: '45%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, -250, 180, -300, 0],
+              y: [0, 250, -180, 200, 0],
+              scale: [1, 0.5, 1.6, 0.7, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 28,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 5
+            }}
+          />
+        </div>
+
+        {/* Mobile: Simplified animation set for better performance */}
+        <div className="md:hidden">
+          {/* Only 3 main elements on mobile with simpler animations */}
+          <motion.div 
+            className="absolute w-64 h-64 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-20 blur-2xl"
+            style={{ left: '20%', top: '15%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 50, -30, 0],
+              y: [0, -40, 60, 0],
+              scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-15 blur-2xl"
+            style={{ left: '60%', top: '60%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, -60, 40, 0],
+              y: [0, 50, -30, 0],
+              scale: [1, 0.9, 1.2, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div 
+            className="absolute w-48 h-48 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-10 blur-xl"
+            style={{ left: '10%', top: '70%', willChange: 'transform' }}
+            animate={shouldReduceMotion ? {} : {
+              x: [0, 80, -50, 0],
+              y: [0, -60, 40, 0],
+              scale: [1, 1.3, 0.7, 1],
+            }}
+            transition={shouldReduceMotion ? {} : {
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+        </div>
         
       </div>
 
