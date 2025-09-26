@@ -29,7 +29,7 @@ function formatPhoneNumber(phone) {
   // Remove all non-numeric characters
   const cleaned = phone.replace(/\D/g, '')
   
-  // Check if it's a valid US number (10 digits) or international (11+ digits)
+  // For US numbers, ensure format is +1xxxxxxxxxx (exactly 11 characters total)
   if (cleaned.length === 10) {
     return `+1${cleaned}`
   } else if (cleaned.length === 11 && cleaned.startsWith('1')) {
@@ -38,6 +38,7 @@ function formatPhoneNumber(phone) {
     return `+${cleaned}`
   }
   
+  // If invalid length, return original (will be caught by validation)
   return phone
 }
 
@@ -135,14 +136,19 @@ Want us to call now or book a time? ${sampleBookingLink}
 
 Reply STOP to opt out.`
 
+    const payload = {
+      phone: to, // Format: +1xxxxxxxxxx (no dashes, spaces, or other characters)
+    }
+    
+    console.log('Sending webhook to:', webhookUrl)
+    console.log('Webhook payload:', JSON.stringify(payload))
+
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        phone: to,
-      }),
+      body: JSON.stringify(payload),
     })
 
     if (!response.ok) {
@@ -247,16 +253,28 @@ exports.handler = async (event, context) => {
       }
     }
 
-    // For production demo, always return success to ensure demo works
-    // This prevents demo failures when webhook/SMS services aren't configured
-    console.log('Demo request for phone:', formattedPhone)
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        success: true,
-        message: 'Demo sent successfully',
-      }),
+    // Send webhook to Make.com for production demo
+    console.log('Sending demo webhook for phone:', formattedPhone)
+    const result = await sendMakeWebhook(formattedPhone)
+    
+    if (result.success) {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          success: true,
+          message: result.message || 'Demo sent successfully',
+        }),
+      }
+    } else {
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          message: result.message || 'Failed to send demo',
+        }),
+      }
     }
   } catch (error) {
     console.error('Demo send error:', error)
