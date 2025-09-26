@@ -21,9 +21,7 @@ export async function sendDemoSMS(to: string): Promise<{ success: boolean; messa
     const brandName = getBrandName()
     const sampleBookingLink = generateSampleBookingLink()
     
-    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
-
-Want us to call now or book a time? ${sampleBookingLink}
+    const message = `Hi, this is ${brandName}—thanks for trying the demo. Want to learn more? Book a quick call: ${sampleBookingLink}
 
 Reply STOP to opt out.`
 
@@ -78,9 +76,7 @@ export async function sendMakeWebhook(to: string, webhookUrl?: string): Promise<
     const brandName = getBrandName()
     const sampleBookingLink = generateSampleBookingLink()
     
-    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
-
-Want us to call now or book a time? ${sampleBookingLink}
+    const message = `Hi, this is ${brandName}—thanks for trying the demo. Want to learn more? Book a quick call: ${sampleBookingLink}
 
 Reply STOP to opt out.`
 

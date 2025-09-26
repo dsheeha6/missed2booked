@@ -131,19 +131,19 @@ html {
 @media (max-width: 768px) {
   /* Optimize blur effects for mobile */
   .blur-3xl {
-    filter: blur(24px);
-  }
-  
-  .blur-2xl {
     filter: blur(16px);
   }
   
-  .blur-xl {
+  .blur-2xl {
     filter: blur(12px);
   }
   
-  .blur-lg {
+  .blur-xl {
     filter: blur(8px);
+  }
+  
+  .blur-lg {
+    filter: blur(6px);
   }
   
   /* Reduce opacity for better performance */
@@ -165,6 +165,18 @@ html {
   
   .opacity-6 {
     opacity: 0.05;
+  }
+  
+  /* Optimize glass card effects on mobile */
+  .glass-card {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  /* Reduce motion complexity on mobile */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
   }
 }
 

@@ -149,49 +149,46 @@ export function Hero() {
 
         {/* Mobile: Simplified animation set for better performance */}
         <div className="md:hidden">
-          {/* Only 3 main elements on mobile with simpler animations */}
+          {/* Only 2 main elements on mobile with optimized animations */}
           <motion.div 
             className="absolute w-64 h-64 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-20 blur-2xl"
-            style={{ left: '20%', top: '15%', willChange: 'transform' }}
+            style={{ 
+              left: '20%', 
+              top: '15%', 
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
             animate={shouldReduceMotion ? {} : {
-              x: [0, 50, -30, 0],
-              y: [0, -40, 60, 0],
-              scale: [1, 1.1, 0.9, 1],
+              x: [0, 30, -20, 0],
+              y: [0, -20, 30, 0],
+              scale: [1, 1.05, 0.95, 1],
             }}
             transition={shouldReduceMotion ? {} : {
-              duration: 15,
+              duration: 20,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div 
             className="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-15 blur-2xl"
-            style={{ left: '60%', top: '60%', willChange: 'transform' }}
+            style={{ 
+              left: '60%', 
+              top: '60%', 
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
             animate={shouldReduceMotion ? {} : {
-              x: [0, -60, 40, 0],
-              y: [0, 50, -30, 0],
-              scale: [1, 0.9, 1.2, 1],
+              x: [0, -30, 20, 0],
+              y: [0, 20, -30, 0],
+              scale: [1, 0.95, 1.05, 1],
             }}
             transition={shouldReduceMotion ? {} : {
-              duration: 18,
+              duration: 25,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          <motion.div 
-            className="absolute w-48 h-48 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-10 blur-xl"
-            style={{ left: '10%', top: '70%', willChange: 'transform' }}
-            animate={shouldReduceMotion ? {} : {
-              x: [0, 80, -50, 0],
-              y: [0, -60, 40, 0],
-              scale: [1, 1.3, 0.7, 1],
-            }}
-            transition={shouldReduceMotion ? {} : {
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 4
+              delay: 3
             }}
           />
         </div>

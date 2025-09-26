@@ -66,10 +66,7 @@ async function sendDemoSMS(to) {
     const brandName = getBrandName()
     const sampleBookingLink = generateSampleBookingLink()
     
-    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
-
-Want us to call now or book a time? ${sampleBookingLink}
-
+    const message = `Hi, this is ${brandName}—thanks for trying the demo. Want to learn more? Book a quick call: ${sampleBookingLink}
 Reply STOP to opt out.`
 
     const from = process.env.TELNYX_MESSAGING_PROFILE_ID || process.env.TELNYX_FROM_NUMBER
@@ -130,10 +127,7 @@ async function sendMakeWebhook(to) {
     const brandName = getBrandName()
     const sampleBookingLink = generateSampleBookingLink()
     
-    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
-
-Want us to call now or book a time? ${sampleBookingLink}
-
+    const message = `Hi, this is ${brandName}—thanks for trying the demo. Want to learn more? Book a quick call: ${sampleBookingLink}
 Reply STOP to opt out.`
 
     const payload = {

@@ -168,9 +168,7 @@ export function DemoSMS() {
                   
                   <div className="bg-blue-600 rounded-2xl rounded-tl-md p-3 mb-2">
                     <p className="text-white text-sm leading-relaxed">
-                      Hi there — it's Missed2Booked. This is what your customers receive when a call is missed.
-                      <br /><br />
-                      Want us to call now or book a time? <a href="https://calendly.com/daniel-sheehan03/missed2booked-com" className="text-blue-200 underline">Book Call</a>
+                      Hi, this is Missed2Booked—thanks for trying the demo. Want to learn more? Book a quick call: <a href="https://calendly.com/daniel-sheehan03/missed2booked-com" className="text-blue-200 underline">https://calendly.com/daniel-sheehan03/missed2booked-com</a>
                       <br /><br />
                       Reply STOP to opt out.
                     </p>
