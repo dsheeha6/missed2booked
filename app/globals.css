@@ -63,9 +63,6 @@
     @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl;
   }
   
-  .gradient-border {
-    @apply relative before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-blue-500 before:to-purple-600 before:-z-10;
-  }
   
   .gradient-text {
     @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;

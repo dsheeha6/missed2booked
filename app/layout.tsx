@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     siteName: 'Missed2Booked',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
+        url: '/icon-512.png',
+        width: 512,
+        height: 512,
         alt: 'Missed2Booked - Never Lose a Missed Call',
       },
     ],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Missed2Booked - Never Lose a Missed Call',
     description: 'We auto-text callers in seconds, book appointments, and (on Scale) an AI agent answers FAQs—so you keep more revenue without extra staff.',
-    images: ['/og-image.jpg'],
+    images: ['/icon-512.png'],
   },
   robots: {
     index: true,

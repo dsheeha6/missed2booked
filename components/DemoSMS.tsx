@@ -34,7 +34,11 @@ export function DemoSMS() {
     
     try {
       const formattedPhone = formatPhoneNumber(phone)
-      const response = await fetch('/api/demo/send', {
+      // Use Netlify function in production, Next.js API route in development
+      const isDevelopment = process.env.NODE_ENV === 'development'
+      const apiUrl = isDevelopment ? 'http://localhost:9999/.netlify/functions/demo-send' : '/.netlify/functions/demo-send'
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

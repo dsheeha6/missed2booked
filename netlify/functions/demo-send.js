@@ -51,7 +51,7 @@ function generateSampleBookingLink() {
 }
 
 function isDemoMode() {
-  return process.env.DEMO_MODE === 'true'
+  return process.env.DEMO_MODE === 'true' || (!process.env.TWILIO_ACCOUNT_SID && !process.env.MAKE_WEBHOOK_URL)
 }
 
 async function sendDemoSMS(to) {
