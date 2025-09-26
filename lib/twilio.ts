@@ -1,16 +1,16 @@
-import twilio from 'twilio'
 import { getBrandName, generateSampleBookingLink } from './utils'
 
-if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_AUTH_TOKEN) {
-  console.warn('Twilio credentials not found. SMS demo will not work.')
+// Telnyx SMS configuration
+const TELNYX_API_KEY = process.env.TELNYX_API_KEY
+const TELNYX_MESSAGING_PROFILE_ID = process.env.TELNYX_MESSAGING_PROFILE_ID
+const TELNYX_FROM_NUMBER = process.env.TELNYX_FROM_NUMBER
+
+if (!TELNYX_API_KEY) {
+  console.warn('Telnyx API key not found. SMS demo will not work.')
 }
 
-const client = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN 
-  ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
-  : null
-
 export async function sendDemoSMS(to: string): Promise<{ success: boolean; message?: string }> {
-  if (!client) {
+  if (!TELNYX_API_KEY) {
     return {
       success: false,
       message: 'SMS service not configured'
@@ -27,9 +27,7 @@ Want us to call now or book a time? ${sampleBookingLink}
 
 Reply STOP to opt out.`
 
-    const from = process.env.TWILIO_MESSAGING_SERVICE_SID 
-      ? process.env.TWILIO_MESSAGING_SERVICE_SID
-      : process.env.TWILIO_DEMO_FROM
+    const from = TELNYX_MESSAGING_PROFILE_ID || TELNYX_FROM_NUMBER
 
     if (!from) {
       return {
@@ -38,13 +36,27 @@ Reply STOP to opt out.`
       }
     }
 
-    const result = await client.messages.create({
-      body: message,
-      from: from,
-      to: to,
+    const response = await fetch('https://api.telnyx.com/v2/messages', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${TELNYX_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: to,
+        from: from,
+        text: message,
+        messaging_profile_id: TELNYX_MESSAGING_PROFILE_ID,
+      }),
     })
 
-    console.log('SMS sent successfully:', result.sid)
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(`Telnyx API error: ${response.status} - ${JSON.stringify(errorData)}`)
+    }
+
+    const result = await response.json()
+    console.log('SMS sent successfully:', result.data.id)
     
     return {
       success: true,
@@ -59,11 +71,20 @@ Reply STOP to opt out.`
   }
 }
 
-export async function sendMakeWebhook(to: string): Promise<{ success: boolean; message?: string }> {
-  const webhookUrl = process.env.MAKE_WEBHOOK_URL || 'https://hook.us2.make.com/u19m7fkq499gyaqlip9ijbsw8rb841fv'
+export async function sendMakeWebhook(to: string, webhookUrl?: string): Promise<{ success: boolean; message?: string }> {
+  const url = webhookUrl || process.env.MAKE_WEBHOOK_URL || 'https://hook.us2.make.com/u19m7fkq499gyaqlip9ijbsw8rb841fv'
   
   try {
-    const response = await fetch(webhookUrl, {
+    const brandName = getBrandName()
+    const sampleBookingLink = generateSampleBookingLink()
+    
+    const message = `Hi there — it's ${brandName}. This is what your customers receive when a call is missed.
+
+Want us to call now or book a time? ${sampleBookingLink}
+
+Reply STOP to opt out.`
+
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -34,9 +34,8 @@ export function DemoSMS() {
     
     try {
       const formattedPhone = formatPhoneNumber(phone)
-      // Use Netlify function in production, Next.js API route in development
-      const isDevelopment = process.env.NODE_ENV === 'development'
-      const apiUrl = isDevelopment ? 'http://localhost:9999/.netlify/functions/demo-send' : '/.netlify/functions/demo-send'
+      // Use Next.js API route for both development and production
+      const apiUrl = '/api/demo/send/'
       
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -171,7 +170,7 @@ export function DemoSMS() {
                     <p className="text-white text-sm leading-relaxed">
                       Hi there — it's Missed2Booked. This is what your customers receive when a call is missed.
                       <br /><br />
-                      Want us to call now or book a time? <a href="/contact" className="text-blue-200 underline">Book Call</a>
+                      Want us to call now or book a time? <a href="https://calendly.com/daniel-sheehan03/missed2booked-com" className="text-blue-200 underline">Book Call</a>
                       <br /><br />
                       Reply STOP to opt out.
                     </p>

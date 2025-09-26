@@ -46,18 +46,15 @@ function getBrandName() {
 }
 
 function generateSampleBookingLink() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://missed2booked.com'
-  return `${baseUrl}/book?demo=true`
+  return 'https://calendly.com/daniel-sheehan03/missed2booked-com'
 }
 
 function isDemoMode() {
-  return process.env.DEMO_MODE === 'true' || (!process.env.TWILIO_ACCOUNT_SID && !process.env.MAKE_WEBHOOK_URL)
+  return process.env.DEMO_MODE === 'true' || (!process.env.TELNYX_API_KEY && !process.env.MAKE_WEBHOOK_URL)
 }
 
 async function sendDemoSMS(to) {
-  const twilio = require('twilio')
-  
-  if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_AUTH_TOKEN) {
+  if (!process.env.TELNYX_API_KEY) {
     return {
       success: false,
       message: 'SMS service not configured'
@@ -65,7 +62,6 @@ async function sendDemoSMS(to) {
   }
 
   try {
-    const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
     const brandName = getBrandName()
     const sampleBookingLink = generateSampleBookingLink()
     
@@ -75,9 +71,7 @@ Want us to call now or book a time? ${sampleBookingLink}
 
 Reply STOP to opt out.`
 
-    const from = process.env.TWILIO_MESSAGING_SERVICE_SID 
-      ? process.env.TWILIO_MESSAGING_SERVICE_SID
-      : process.env.TWILIO_DEMO_FROM
+    const from = process.env.TELNYX_MESSAGING_PROFILE_ID || process.env.TELNYX_FROM_NUMBER
 
     if (!from) {
       return {
@@ -86,13 +80,27 @@ Reply STOP to opt out.`
       }
     }
 
-    const result = await client.messages.create({
-      body: message,
-      from: from,
-      to: to,
+    const response = await fetch('https://api.telnyx.com/v2/messages', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.TELNYX_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: to,
+        from: from,
+        text: message,
+        messaging_profile_id: process.env.TELNYX_MESSAGING_PROFILE_ID,
+      }),
     })
 
-    console.log('SMS sent successfully:', result.sid)
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(`Telnyx API error: ${response.status} - ${JSON.stringify(errorData)}`)
+    }
+
+    const result = await response.json()
+    console.log('SMS sent successfully:', result.data.id)
     
     return {
       success: true,
@@ -108,7 +116,7 @@ Reply STOP to opt out.`
 }
 
 async function sendMakeWebhook(to) {
-  const webhookUrl = process.env.MAKE_WEBHOOK_URL
+  const webhookUrl = process.env.MAKE_WEBHOOK_URL || 'https://hook.us2.make.com/u19m7fkq499gyaqlip9ijbsw8rb841fv'
   
   if (!webhookUrl) {
     return {
@@ -243,7 +251,7 @@ exports.handler = async (event, context) => {
     }
 
     // Send SMS based on configured mode
-    const sendMode = process.env.DEMO_SEND_MODE || 'twilio'
+    const sendMode = process.env.DEMO_SEND_MODE || 'make'
     
     let result
     if (sendMode === 'make') {

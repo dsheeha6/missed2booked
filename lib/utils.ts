@@ -34,8 +34,7 @@ export function validatePhoneNumber(phone: string): boolean {
 }
 
 export function generateSampleBookingLink(): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-  return `${baseUrl}/book?demo=true`
+  return 'https://calendly.com/daniel-sheehan03/missed2booked-com'
 }
 
 export function getBrandName(): string {
