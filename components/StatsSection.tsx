@@ -1,7 +1,6 @@
 "use client";
 import { PROOF_STATS } from "@/constants/stats";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 

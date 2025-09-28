@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Check, X, Star, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -39,9 +38,6 @@ export function PricingTable() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Simple, transparent pricing
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-            Start with a 14-day free trial. No credit card required.
-          </p>
 
           {/* Billing toggle */}
           <div className="flex items-center justify-center mb-8">

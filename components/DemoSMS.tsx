@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'

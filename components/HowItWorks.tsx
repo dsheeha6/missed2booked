@@ -1,7 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { Phone, MessageCircle, CalendarCheck, ArrowRight } from 'lucide-react'
